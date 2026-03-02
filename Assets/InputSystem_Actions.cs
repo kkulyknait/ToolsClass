@@ -114,7 +114,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -186,6 +186,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""RightFlipper"",
                     ""type"": ""Button"",
                     ""id"": ""e96d65d8-80a0-4928-b8b6-6982bf12f52a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpinLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""257ad167-3f00-4923-a7f4-0009ae228704"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpinRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""e0eecb75-4966-45f8-8315-360244b47f41"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -597,6 +615,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RightFlipper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67904717-4550-40a7-8021-329379523bd3"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpinLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6499e587-a605-4cc6-b4cb-d95d46616d9f"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpinRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1195,6 +1235,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_LeftFlipper = m_Player.FindAction("LeftFlipper", throwIfNotFound: true);
         m_Player_RightFlipper = m_Player.FindAction("RightFlipper", throwIfNotFound: true);
+        m_Player_SpinLeft = m_Player.FindAction("SpinLeft", throwIfNotFound: true);
+        m_Player_SpinRight = m_Player.FindAction("SpinRight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1299,6 +1341,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_LeftFlipper;
     private readonly InputAction m_Player_RightFlipper;
+    private readonly InputAction m_Player_SpinLeft;
+    private readonly InputAction m_Player_SpinRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1354,6 +1398,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/RightFlipper".
         /// </summary>
         public InputAction @RightFlipper => m_Wrapper.m_Player_RightFlipper;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SpinLeft".
+        /// </summary>
+        public InputAction @SpinLeft => m_Wrapper.m_Player_SpinLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SpinRight".
+        /// </summary>
+        public InputAction @SpinRight => m_Wrapper.m_Player_SpinRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1413,6 +1465,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RightFlipper.started += instance.OnRightFlipper;
             @RightFlipper.performed += instance.OnRightFlipper;
             @RightFlipper.canceled += instance.OnRightFlipper;
+            @SpinLeft.started += instance.OnSpinLeft;
+            @SpinLeft.performed += instance.OnSpinLeft;
+            @SpinLeft.canceled += instance.OnSpinLeft;
+            @SpinRight.started += instance.OnSpinRight;
+            @SpinRight.performed += instance.OnSpinRight;
+            @SpinRight.canceled += instance.OnSpinRight;
         }
 
         /// <summary>
@@ -1457,6 +1515,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @RightFlipper.started -= instance.OnRightFlipper;
             @RightFlipper.performed -= instance.OnRightFlipper;
             @RightFlipper.canceled -= instance.OnRightFlipper;
+            @SpinLeft.started -= instance.OnSpinLeft;
+            @SpinLeft.performed -= instance.OnSpinLeft;
+            @SpinLeft.canceled -= instance.OnSpinLeft;
+            @SpinRight.started -= instance.OnSpinRight;
+            @SpinRight.performed -= instance.OnSpinRight;
+            @SpinRight.canceled -= instance.OnSpinRight;
         }
 
         /// <summary>
@@ -1834,6 +1898,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRightFlipper(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SpinLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpinLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SpinRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpinRight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -28,7 +28,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -100,6 +100,24 @@
                     "name": "RightFlipper",
                     "type": "Button",
                     "id": "e96d65d8-80a0-4928-b8b6-6982bf12f52a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpinLeft",
+                    "type": "Button",
+                    "id": "257ad167-3f00-4923-a7f4-0009ae228704",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpinRight",
+                    "type": "Button",
+                    "id": "e0eecb75-4966-45f8-8315-360244b47f41",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -511,6 +529,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightFlipper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67904717-4550-40a7-8021-329379523bd3",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpinLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6499e587-a605-4cc6-b4cb-d95d46616d9f",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpinRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
