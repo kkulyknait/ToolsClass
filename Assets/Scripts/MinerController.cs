@@ -24,21 +24,39 @@ public class MinerController : MonoBehaviour
 
     private void Update()
     {
-        //  Read Inputs
-        _moveInput = _input.Player.Move.ReadValue<Vector2>();
+        ////  Read Inputs
+        //_moveInput = _input.Player.Move.ReadValue<Vector2>();
 
-        //  Translate
-        transform.Translate(_moveInput * _moveSpeed * Time.deltaTime, Space.World);
+        ////  Translate
+        //transform.Translate(_moveInput * _moveSpeed * Time.deltaTime, Space.World);
 
-        //  Rotate
-        if (_input.Player.SpinLeft.IsPressed())
-        {
-            transform.Rotate(0, 0, _spinSpeed * Time.deltaTime);
-        }
-        if (_input.Player.SpinRight.IsPressed())
-        {
-            transform.Rotate(0, 0, -_spinSpeed * Time.deltaTime);
-        }
+        ////  Rotate
+        //if (_input.Player.SpinLeft.IsPressed())
+        //{
+        //    transform.Rotate(0, 0, _spinSpeed * Time.deltaTime);
+        //}
+        //if (_input.Player.SpinRight.IsPressed())
+        //{
+        //    transform.Rotate(0, 0, -_spinSpeed * Time.deltaTime);
+        //}
+
+        ///  Asteroids  Style Controls
+        ///  
+        Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
+        ////  Spin using the X input A/D Keys
+        transform.Rotate(0, 0, -moveInput.x * _spinSpeed * Time.deltaTime);
+        transform.Translate(new Vector2(0, moveInput.y) * _moveSpeed 
+            * Time.deltaTime, Space.Self);
+
+        //// Space Invaders Style Controls
+        //Vector2 moveInput = _input.Player.Move.ReadValue<Vector2>();
+        //// Move only the X, Ignore the Y
+        //transform.Translate(new Vector2(moveInput.x, 0) *_moveSpeed
+        //    * Time.deltaTime, Space.World);
+
+        //float clampedX = Mathf.Clamp(transform.position.x, -8f, 8f);  // Adjsut to 8f to the screen size
+        //transform.position = new Vector3 (clampedX, -2f, transform.position.z);  // Adjust Y to the bottom of the screen
+
     }
 
 }
