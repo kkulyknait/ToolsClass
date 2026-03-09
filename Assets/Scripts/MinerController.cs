@@ -8,6 +8,12 @@ public class MinerController : MonoBehaviour
 
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _spinSpeed = 180f;
+    [SerializeField] private GameObject _laserPrefab;  //  Drag and drop our laser prefab here in the Inspector
+    [SerializeField] private Transform _firingPoint;  //  Drag our FirePoint here!  
+
+    [SerializeField] private float _chargeTime = 1.0f;  //  Time to fully charge the shot
+    private float _currentChargeTime = 0f;  //  Our stopwatch
+    private bool _isCharging = false;  //  Are we currently charging?
 
     private void Awake()
     {
@@ -56,6 +62,34 @@ public class MinerController : MonoBehaviour
 
         //float clampedX = Mathf.Clamp(transform.position.x, -8f, 8f);  // Adjsut to 8f to the screen size
         //transform.position = new Vector3 (clampedX, -2f, transform.position.z);  // Adjust Y to the bottom of the screen
+
+        //  WEAPON CONTROLS
+        //  Standard Shot
+        if (_input.Player.Attack.WasPressedThisFrame())
+        {
+            _isCharging = true;  //  Start charging
+            _currentChargeTime = 0f;  //  Reset the stopwatch
+        }
+        if (_isCharging && _input.Player.Attack.IsPressed())
+        {
+            _currentChargeTime += Time.deltaTime;  //  Keep charging
+            //  Optional....we could add some visual feedback here
+        }
+        if(_input.Player.Attack.WasReleasedThisFrame())
+        {
+            _isCharging = false;  //  Stop charging
+            if (_currentChargeTime >= _chargeTime)
+            {
+                //  ALT FIRE!!!!
+                GameObject giantLaser = Instantiate(_laserPrefab, _firingPoint.position, _firingPoint.rotation);
+                giantLaser.transform.localScale *= 4f;  //  Make twice as big!
+
+            }
+            else
+            {
+                Instantiate(_laserPrefab, _firingPoint.position, _firingPoint.rotation);
+            }
+        }
 
     }
 

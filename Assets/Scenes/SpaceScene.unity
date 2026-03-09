@@ -285,6 +285,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &400699841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400699842}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400699842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400699841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1506, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 514353887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &514353884
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +431,8 @@ Transform:
   m_LocalPosition: {x: -1.2826016, y: -0.696573, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 400699842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &514353888
@@ -417,6 +449,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinerController
   _moveSpeed: 5
   _spinSpeed: 180
+  _laserPrefab: {fileID: 63100723449051936, guid: 511bdd7f314d13b41b28af9a3309deb1, type: 3}
+  _firingPoint: {fileID: 400699842}
+  _chargeTime: 1
 --- !u!114 &514353889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +705,7 @@ Transform:
   m_GameObject: {fileID: 1966383484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: 2.57, z: 0}
+  m_LocalPosition: {x: 8.38, y: -3.38, z: 0}
   m_LocalScale: {x: 6.630469, y: 3.9853122, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
