@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ShipWeapon : MonoBehaviour
 {
@@ -9,5 +10,17 @@ public class ShipWeapon : MonoBehaviour
     {
         Vector3 spawnPos = _firePoint != null ? _firePoint.position : transform.position; //  Use fire point position if assigned, otherwise use ship's position
         Instantiate(_laserPrefab, spawnPos, transform.rotation); //  Spawn the laser at the fire point's position and rotation
+    }
+    public void FireWithDelay(float delayTime)
+    {
+        StartCoroutine(FireRoutine(delayTime));
+    }
+
+    private IEnumerator FireRoutine (float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        ///  Time's up!  Fire the LASERS!
+        Vector3 spawnPos = _firePoint != null ? _firePoint.position : transform.position;
+        Instantiate(_laserPrefab, spawnPos, transform.rotation);
     }
 }
