@@ -5,6 +5,16 @@ public class ShipWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject _laserPrefab;  //  Assign the laser prefab in the inspector
     [SerializeField] private Transform _firePoint;  //  Assign the fire point
+    [SerializeField] private AlienStats _myStats;
+
+    private void Start()
+    {
+        //  Read the ship data dynamically
+        Debug.Log("I am a " + _myStats.AlienName + " and I am worth " + _myStats.ScoreValue
+            + " points!");
+
+        // _speed = _myStats.MovementSpeed;
+    }
 
     public void FireLaser()
     {

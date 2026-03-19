@@ -208,6 +208,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpawnTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""70b3b874-2b54-407a-bee2-51f8a147da1f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -637,6 +646,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpinRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa3f63f8-0e29-4e15-b7cf-83d75808354d"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnTest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1237,6 +1257,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_RightFlipper = m_Player.FindAction("RightFlipper", throwIfNotFound: true);
         m_Player_SpinLeft = m_Player.FindAction("SpinLeft", throwIfNotFound: true);
         m_Player_SpinRight = m_Player.FindAction("SpinRight", throwIfNotFound: true);
+        m_Player_SpawnTest = m_Player.FindAction("SpawnTest", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1343,6 +1364,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightFlipper;
     private readonly InputAction m_Player_SpinLeft;
     private readonly InputAction m_Player_SpinRight;
+    private readonly InputAction m_Player_SpawnTest;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1406,6 +1428,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/SpinRight".
         /// </summary>
         public InputAction @SpinRight => m_Wrapper.m_Player_SpinRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SpawnTest".
+        /// </summary>
+        public InputAction @SpawnTest => m_Wrapper.m_Player_SpawnTest;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1471,6 +1497,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SpinRight.started += instance.OnSpinRight;
             @SpinRight.performed += instance.OnSpinRight;
             @SpinRight.canceled += instance.OnSpinRight;
+            @SpawnTest.started += instance.OnSpawnTest;
+            @SpawnTest.performed += instance.OnSpawnTest;
+            @SpawnTest.canceled += instance.OnSpawnTest;
         }
 
         /// <summary>
@@ -1521,6 +1550,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SpinRight.started -= instance.OnSpinRight;
             @SpinRight.performed -= instance.OnSpinRight;
             @SpinRight.canceled -= instance.OnSpinRight;
+            @SpawnTest.started -= instance.OnSpawnTest;
+            @SpawnTest.performed -= instance.OnSpawnTest;
+            @SpawnTest.canceled -= instance.OnSpawnTest;
         }
 
         /// <summary>
@@ -1912,6 +1944,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpinRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SpawnTest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpawnTest(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShipWeapon
   _laserPrefab: {fileID: 63100723449051936, guid: 62ac3aef1446e4d4c8ba7c5312f9c666, type: 3}
   _firePoint: {fileID: 5146950215580983910}
+  _myStats: {fileID: 11400000, guid: 3c1797237f73a0947b16d483cb51bc7e, type: 2}
 --- !u!1 &8041565520034667184
 GameObject:
   m_ObjectHideFlags: 0
