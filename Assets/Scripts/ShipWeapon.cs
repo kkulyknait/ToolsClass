@@ -3,34 +3,31 @@ using System.Collections;
 
 public class ShipWeapon : MonoBehaviour
 {
-    [SerializeField] private GameObject _laserPrefab;  //  Assign the laser prefab in the inspector
-    [SerializeField] private Transform _firePoint;  //  Assign the fire point
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private Transform _firePoint;
     [SerializeField] private AlienStats _myStats;
 
     private void Start()
     {
-        //  Read the ship data dynamically
-        Debug.Log("I am a " + _myStats.AlienName + " and I am worth " + _myStats.ScoreValue
-            + " points!");
-
-        // _speed = _myStats.MovementSpeed;
+        Debug.Log("I am a " + _myStats.AlienName + " and I am worth " + _myStats.ScoreValue + " points!");
     }
 
     public void FireLaser()
     {
-        Vector3 spawnPos = _firePoint != null ? _firePoint.position : transform.position; //  Use fire point position if assigned, otherwise use ship's position
-        Instantiate(_laserPrefab, spawnPos, transform.rotation); //  Spawn the laser at the fire point's position and rotation
+        Vector3 spawnPos = _firePoint != null ? _firePoint.position : transform.position;
+        GameObject newLaser = Instantiate(_laserPrefab, spawnPos, transform.rotation);
+        newLaser.GetComponent<LaserProjectile>().AssignAsEnemyLaser();
     }
+
     public void FireWithDelay(float delayTime)
     {
         StartCoroutine(FireRoutine(delayTime));
     }
 
-    private IEnumerator FireRoutine (float delayTime)
+    private IEnumerator FireRoutine(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        ///  Time's up!  Fire the LASERS!
-        Vector3 spawnPos = _firePoint != null ? _firePoint.position : transform.position;
-        Instantiate(_laserPrefab, spawnPos, transform.rotation);
+        // Execute the method that contains the correct assignment logic
+        FireLaser();
     }
 }

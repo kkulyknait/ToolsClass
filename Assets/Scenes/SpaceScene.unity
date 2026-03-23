@@ -119,7 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &180042918
+--- !u!1 &136242636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136242638}
+  - component: {fileID: 136242637}
+  m_Layer: 0
+  m_Name: AsteroidObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &136242637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136242636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d655b265a2c279c49bfedf7ee7532e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestructibleGenerator
+  _chunkPrefab: {fileID: 1221719880679875430, guid: c93e91f810885784b9cfbb5e6928e0ef, type: 3}
+  _spacing: 0.25
+--- !u!4 &136242638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136242636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.64, y: -1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &880292160
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,11 +179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5155780356755795787, guid: 43790f27442544d47b38307ebc6b0057, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8802335
+      value: -4.1831713
       objectReference: {fileID: 0}
     - target: {fileID: 5155780356755795787, guid: 43790f27442544d47b38307ebc6b0057, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6362166
+      value: 0.8648513
       objectReference: {fileID: 0}
     - target: {fileID: 5155780356755795787, guid: 43790f27442544d47b38307ebc6b0057, type: 3}
       propertyPath: m_LocalPosition.z
@@ -676,4 +722,5 @@ SceneRoots:
   - {fileID: 1966383487}
   - {fileID: 1159445934}
   - {fileID: 1131958470}
-  - {fileID: 180042918}
+  - {fileID: 136242638}
+  - {fileID: 880292160}
