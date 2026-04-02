@@ -18,6 +18,7 @@ public class HUDController : MonoBehaviour
         if (GameManagerMain.Instance != null && _coinLabel != null)
         {
             _coinLabel.text = "Coins: " + GameManagerMain.Instance.PlayerCoins;
+           // Debug.Log("Should be updating coin count on HUD");
         }
     }
 

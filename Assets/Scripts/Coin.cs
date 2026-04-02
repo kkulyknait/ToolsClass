@@ -12,12 +12,19 @@ public class Coin : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.GetComponent<Rigidbody2D>() != null)
+        if (other.CompareTag("Player") && other.GetComponent<Rigidbody2D>() != null)
         {
-            //  Hide Coin
-            HideCoin();
-            // Schedule Reset
-            Invoke("ResetCoin", 3f);
+            if (GameManagerMain.Instance != null)
+            {
+                GameManagerMain.Instance.PlayerCoins++;
+                Destroy(gameObject);
+                //  Hide Coin
+                //HideCoin();
+                // Schedule Reset
+                //Invoke("ResetCoin", 3f);
+            }
+
+
         }
     }
     private void HideCoin()
