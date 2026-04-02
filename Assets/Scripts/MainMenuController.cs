@@ -26,7 +26,15 @@ public class MainMenuController : MonoBehaviour
         }
 
     }
-
+    private void Start()
+    {
+        //Check to see if Game Manager exists and if so, get the current score and display it
+        if (GameManagerMain.Instance != null && _scoreLabel != null)
+        {
+            _scoreLabel.text = GameManagerMain.Instance.GameOverMessage + " Final Coins:" +
+                GameManagerMain.Instance.PlayerCoins;
+        }
+    }
     private void OnStartClicked()
     {
         Debug.Log("Start Button Clicked!  Loading into Game");
