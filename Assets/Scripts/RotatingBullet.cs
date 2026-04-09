@@ -5,6 +5,8 @@ public class RotatingBullet : MonoBehaviour
     [SerializeField] private float _speed = 10f;  // Speed of the bullet
     [SerializeField] private float _spinSpeed = 360f;  // Degrees per second
 
+    //  Use this for direction
+    private float _direction = 1f;  //  1 for right, -1 for left
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +17,8 @@ public class RotatingBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * _speed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.right * _direction * _speed * Time.deltaTime, 
+            Space.World);
         transform.Rotate(0, 0, _spinSpeed * Time.deltaTime);  // Rotate projectile
     }
 
@@ -27,5 +30,10 @@ public class RotatingBullet : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+    }
+    public void SetDirection(float direction)
+    {
+        _direction = direction;
+
     }
 }
