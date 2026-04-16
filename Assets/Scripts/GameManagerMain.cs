@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManagerMain : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class GameManagerMain : MonoBehaviour
     public int CoinsNeededForLevel2 = 4;
     public int CoinsNeededToWin = 8;
 
+    private List<ItemData> _collectedItems = new List<ItemData>();
+
     void Awake()
     {
         if (Instance == null)
@@ -28,6 +32,20 @@ public class GameManagerMain : MonoBehaviour
             //If another manager is somehow accidentally created, destroy it.
             Destroy(gameObject);
         }
+    }
+
+    public void CollectItem(ItemData item)
+    {
+        if (!_collectedItems.Contains(item))
+        {
+            _collectedItems.Add(item);
+            Debug.Log("Collected: " + item.ItemName);
+        }
+    }
+
+    public bool HasItem(ItemData item)
+    {
+        return _collectedItems.Contains(item);
     }
 
     public void TryAdvanceLevel()

@@ -5,7 +5,7 @@ public class HUDController : MonoBehaviour
 {
     private Label _coinLabel;
 
-    [SerializeField] private ItemData[] _requireItems;  ///Drag out scriptable objects for require items 
+    [SerializeField] private ItemData[] _requiredItems;  ///Drag out scriptable objects for require items 
 
     private void Start()
     {
@@ -13,10 +13,10 @@ public class HUDController : MonoBehaviour
         _coinLabel = document.rootVisualElement.Q<Label>("coin-label");
 
         var listContainer = document.rootVisualElement.Q<VisualElement>("item-list-container");
-        if (listContainer != null && _requireItems != null)
+        if (listContainer != null && _requiredItems != null)
         {
             //  Look through our ScriptableOjects and build a UI element for each one
-            foreach (ItemData item in _requireItems)
+            foreach (ItemData item in _requiredItems)
             {
                 Label newLabel = new Label();
                 newLabel.text = "[Missing]" + item.ItemName;
@@ -25,9 +25,23 @@ public class HUDController : MonoBehaviour
                 listContainer.Add(newLabel);  // Dynamically display our asset data on our UI
             }
         }
-
+        UpdateInventoryUI(); 
     }
+    public void UpdateInventoryUI()
+    {
+        var listContainer = GetComponent<UIDocument>().rootVisualElement
+            .Q<VisualElement>("item-list-container");
+        listContainer.Clear();  //  Clear out old List
 
+        foreach (ItemData item in _requiredItems)
+        {
+            Label newLabel = new Label();
+            bool hasItem = GameManagerMain.Instance.HasItem(item);  // Check if player has the item
+            newLabel.text = (hasItem ? "[Found] " : "[Missing] ") + item.ItemName;
+            newLabel.style.color = hasItem ? Color.green : Color.white;
+            listContainer.Add(newLabel);  //  Update our display with new info 
+        }
+    }
     private void Update()
     {
         //   Update our UI in real time
